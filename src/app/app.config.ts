@@ -5,6 +5,7 @@ import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideEffects } from '@ngrx/effects';
 import { provideStore } from '@ngrx/store';
+import { _formReducer } from './shared/store/form.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,6 +17,10 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(),
     provideEffects(),
-    provideStore()
+    provideStore(
+      {
+        formState: _formReducer
+      }
+    )
   ]
 };
