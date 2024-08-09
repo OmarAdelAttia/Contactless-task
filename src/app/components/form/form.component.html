@@ -7,6 +7,7 @@
             <label for="name" class="block mb-2 text-xl font-bold">
                 Name:
             </label>
+            <!-- I used [formControl]="form.controls.name" on purpose to show there is two ways you can bind data to the form -->
             <input [formControl]="form.controls.name" id="name" class="w-full p-4 border rounded" name="name" />
         </div>
         <!-- Age input field -->
