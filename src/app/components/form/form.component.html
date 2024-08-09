@@ -1,1 +1,62 @@
-<p>form works!</p>
+<!-- Container for form with styling -->
+<div class="max-w-2xl mx-auto p-6 border rounded-lg shadow-lg">
+    <!-- Reactive form -->
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <!-- Name input field -->
+        <div class="mb-6">
+            <label for="name" class="block mb-2 text-xl font-bold">
+                Name:
+            </label>
+            <input [formControl]="form.controls.name" id="name" class="w-full p-4 border rounded" name="name" />
+        </div>
+        <!-- Age input field -->
+        <div class="mb-6">
+            <label for="age" class="block mb-2 text-xl font-bold">
+                Age:
+            </label>
+            <input formControlName="age" id="age" type="number" class="w-full p-4 border rounded" name="age" />
+        </div>
+        <!-- Gender selection dropdown -->
+        <div class="mb-6">
+            <label for="gender" class="block mb-2 text-xl font-bold">
+                Gender:
+            </label>
+            <select formControlName="gender" id="gender" lass="w-full p-4 border rounded" name="gender">
+                <option value="male">
+                    Male
+                </option>
+                <option value="female">
+                    Female
+                </option>
+                <option value="other">
+                    Other
+                </option>
+            </select>
+        </div>
+        <!-- Subscribe checkbox -->
+        <div class="mb-6 flex ">
+            <input formControlName="subscribe" id="subscribe" type="checkbox" class="mr-2 scale-150" name="subscribe" />
+            <label for="subscribe" class="block text-l">
+                *I accept to keep my info.
+            </label>
+        </div>
+        <!-- Action buttons for undo, redo, and submit -->
+        <div class="flex justify-between mt-8">
+            <!-- Undo button -->
+            <button (click)="undo()" type="button" [disabled]="!(canUndo$ | async)"
+                class="px-6 py-3 bg-blue-500 text-white rounded disabled:bg-gray-300 text-xl hover:bg-blue-700 transition duration-500 ease-in-out">
+                Undo
+            </button>
+            <!-- Redo button -->
+            <button (click)="redo()" type="button" [disabled]="!(canRedo$ | async)"
+                class="px-6 py-3 bg-blue-500 text-white rounded disabled:bg-gray-300 text-xl hover:bg-blue-700 transition duration-500 ease-in-out">
+                Redo
+            </button>
+            <!-- Submit button -->
+            <button type="submit"
+                class="px-6 py-3 bg-blue-500 text-white rounded disabled:bg-gray-300 text-xl hover:bg-blue-700 transition duration-500 ease-in-out">
+                Submit
+            </button>
+        </div>
+    </form>
+</div>
