@@ -7,5 +7,15 @@ import { provideEffects } from '@ngrx/effects';
 import { provideStore } from '@ngrx/store';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(), provideEffects(), provideStore()]
+  providers: [
+    provideZoneChangeDetection(
+      {
+        eventCoalescing: true
+      }
+    ),
+    provideRouter(routes),
+    provideClientHydration(),
+    provideEffects(),
+    provideStore()
+  ]
 };
