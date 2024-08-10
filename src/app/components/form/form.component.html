@@ -23,15 +23,11 @@
                 Gender:
             </label>
             <select formControlName="gender" id="gender" lass="w-full p-4 border rounded" name="gender">
-                <option value="male">
-                    Male
+                @for (gender of genderList(); track gender.value) {
+                <option value="gender">
+                    {{ gender.label }}
                 </option>
-                <option value="female">
-                    Female
-                </option>
-                <option value="other">
-                    Other
-                </option>
+                }
             </select>
         </div>
         <!-- Subscribe checkbox -->

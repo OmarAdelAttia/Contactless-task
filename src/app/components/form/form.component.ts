@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AsyncPipe } from '@angular/common';
 import { Store } from '@ngrx/store';
@@ -14,6 +14,13 @@ import { redo, setFormState, undo } from '../../shared/store/form.actions';
   styleUrl: './form.component.scss'
 })
 export class FormComponent {
+
+  // gender list to make the form more dynamic
+  genderList = signal([
+    { value: 'male', label: 'Male' },
+    { value: 'female', label: 'Female' },
+    { value: 'other', label: 'Other' }
+  ]);
 
   // Initialize reactive form with validators
   form = new FormGroup({
