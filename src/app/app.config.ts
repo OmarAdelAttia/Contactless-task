@@ -5,6 +5,7 @@ import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideEffects } from '@ngrx/effects';
 import { provideStore } from '@ngrx/store';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { _formReducer } from './shared/store/form.reducer';
 
 export const appConfig: ApplicationConfig = {
@@ -20,6 +21,11 @@ export const appConfig: ApplicationConfig = {
     provideStore(
       {
         formState: _formReducer
+      }
+    ),
+    provideStoreDevtools(
+      {
+        maxAge: 6
       }
     )
   ]

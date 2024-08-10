@@ -62,7 +62,6 @@ export class FormComponent {
 
     // Dispatch form value changes to the store
     this.form.valueChanges.subscribe(value => {
-      console.log(value)
       this.store.dispatch(setFormState({ formState: value }));
     });
   }
