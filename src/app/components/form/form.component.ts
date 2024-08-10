@@ -1,10 +1,11 @@
 import { Component, signal } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AsyncPipe } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectCanRedo, selectCanUndo, selectCurrentState } from '../../shared/store/form.selectors';
 import { redo, setFormState, undo } from '../../shared/store/form.actions';
+import { FormState } from '../../shared/models/form.model';
 
 @Component({
   selector: 'app-form',
@@ -24,31 +25,31 @@ export class FormComponent {
 
   // Initialize reactive form with validators
   form = new FormGroup({
-    name: new FormControl(undefined, {
+    name: new FormControl('', {
       validators: [
         Validators.required,
         Validators.minLength(3)
       ]
     }),
-    age: new FormControl(undefined, {
+    age: new FormControl(0, {
       validators: [
         Validators.required,
         Validators.minLength(2)
       ]
     }),
-    gender: new FormControl(undefined, {
+    gender: new FormControl('', {
       validators: [
         Validators.required,
       ]
     }),
-    subscribe: new FormControl(undefined, {}),
+    subscribe: new FormControl(false, {}),
   });
 
   // Observables for undo/redo actions
   canUndo$: Observable<boolean>;
   canRedo$: Observable<boolean>;
 
-  constructor(private fb: FormBuilder, private store: Store) {
+  constructor(private store: Store) {
 
     // Set up undo/redo observables
     this.canUndo$ = this.store.select(selectCanUndo);
@@ -61,6 +62,7 @@ export class FormComponent {
 
     // Dispatch form value changes to the store
     this.form.valueChanges.subscribe(value => {
+      console.log(value)
       this.store.dispatch(setFormState({ formState: value }));
     });
   }

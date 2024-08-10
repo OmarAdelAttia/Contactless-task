@@ -24,7 +24,7 @@
             </label>
             <select formControlName="gender" id="gender" lass="w-full p-4 border rounded" name="gender">
                 @for (gender of genderList(); track gender.value) {
-                <option value="gender">
+                <option [value]="gender.value">
                     {{ gender.label }}
                 </option>
                 }

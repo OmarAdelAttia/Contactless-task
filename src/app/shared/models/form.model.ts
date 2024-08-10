@@ -1,5 +1,12 @@
+export interface FormDataModel {
+    name: string;
+    age: number;
+    gender: string;
+    subscribe: boolean;
+}
+
 export interface FormState {
-    currentState: any;
-    history: any[];
-    redoStack: any[];
+    currentState: FormDataModel;
+    history: FormDataModel[];
+    redoStack: FormDataModel[];
 }

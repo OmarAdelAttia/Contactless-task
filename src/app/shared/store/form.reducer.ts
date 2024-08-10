@@ -6,7 +6,7 @@ import { setFormState, undo, redo } from './form.actions';
 export const initialState: FormState = {
     currentState: {
         name: '',
-        age: null,
+        age: 0,
         gender: '',
         subscribe: false
     },
